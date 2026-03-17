@@ -4,9 +4,9 @@ def get_range_for_difficulty(difficulty: str):
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
-        return 1, 100
+        return 1, 50
     if difficulty == "Hard":
-        return 1, 1000
+        return 1, 100
     return 1, 100
 
 def parse_guess(raw: str):
@@ -57,10 +57,11 @@ def check_guess(guess, secret):
 def update_score(current_score: int, outcome: str, attempt_number: int):
     """Update score based on outcome and attempt number."""
     if outcome == "Win":
-        # FIX: First attempt guess should give full score. Refactored logic into logic_utils.py and removed  "+ 1" in score calculation
-        points = 100 - 10 * attempt_number
+        # FIX: First attempt guess should give full score. Refactored logic into logic_utils.py and changed  "+ 1" to "- 1" in score calculation
+        points = 100 - 10 * (attempt_number - 1)
         if points < 10:
             points = 10
+        
         return current_score + points
 
     # FIX: Should always subtract score if guess is incorrect. Refactored logic into "if" condition that checks if guess is even (then adds 5 points)

@@ -23,11 +23,11 @@ def test_guess_too_low():
 
 def test_update_score_win_first_attempt():
     # Winning on the first attempt should give 100 points
-    assert update_score(0, "Win", 0) == 100
+    assert update_score(0, "Win", 1) == 100
 
 def test_update_score_win_later_attempt():
     # Winning on the 3rd attempt should give 80 points (100 - 10*2)
-    assert update_score(0, "Win", 2) == 80
+    assert update_score(0, "Win", 3) == 80
 
 def test_update_score_too_high_penalty():
     # Too High should subtract 5 points
