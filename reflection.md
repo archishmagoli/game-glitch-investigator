@@ -26,10 +26,10 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 
 ## 3. Debugging and testing your fixes
 
-- How did you decide whether a bug was really fixed?
-- Describe at least one test you ran (manual or using pytest)  
-  and what it showed you about your code.
-- Did AI help you design or understand any tests? How?
+- How did you decide whether a bug was really fixed? **I first ensured that Agent Mode actually fixed the bug properly by manually inspecting the code. Sometimes, the fix did not propagate, so I re-factored the prompts I used to be more specific.**
+- Describe at least one test you ran (manual or using pytest) 
+  and what it showed you about your code. **I refactored the existing `test_guess_too_high` and `test_guess_too_low` test cases in `test_game_logic.py` by adding two new `assert` messages to verify the "HIGHER"/"LOWER" suggestions. Initially, we were only testing the `result` ("Too High" or "Too Low"), so I made the test cases more robust. These tests helped me ensure that the user was getting the correct direction to make their next guess when the first guess was wrong.**
+- Did AI help you design or understand any tests? How? **I saw that `update_score` had a bug in it such that the guessing the number correctly on the first attempt resulted in a deduction in the score. Once Agent Mode made the fix I instructed, I used AI to generate test cases with different accumulated attempt numbers to ensure the score was being deducted properly. Fortunately, the generated test cases looked great on the first try!**
 
 ---
 
